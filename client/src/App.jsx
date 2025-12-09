@@ -1,25 +1,19 @@
-import { useState } from 'react';
-import Context from '@/context.jsx';
+import { Routes, Route } from 'react-router';
+import { publicRoutes } from './routes';
 
 function App() {
-    const [count, setCount] = useState(0);
-
     return (
-        <>
-            <h1>Vite + React</h1>
-            <div className="text-xl font-bold text-yellow-300">
-                <button onClick={() => setCount((count) => count + 1)}>
-                    count is {count}
-                </button>
-                <p>
-                    Edit <code>src/App.jsx</code> and save to test HMR
-                </p>
-                <Context />
-            </div>
-            <p className="read-the-docs">
-                Click on the Vite and React logos to learn more
-            </p>
-        </>
+        <Routes>
+            {publicRoutes.map((route, index) => {
+                const Layout = route.component;
+                {
+                    /* condition */
+                }
+                return (
+                    <Route key={index} path={route.link} element={<Layout />} />
+                );
+            })}
+        </Routes>
     );
 }
 
