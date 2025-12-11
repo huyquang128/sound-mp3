@@ -8,6 +8,7 @@ const userChema = new mongoose.Schema({
     name: String,
     city: String,
     country: String,
+    role: { type: String, enum: ['user', 'admin'], default: 'user' },
     avatar: {
         cloud_id: String,
         url: String,
