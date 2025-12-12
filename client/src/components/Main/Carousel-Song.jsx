@@ -6,7 +6,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 // import required modules
 import { Navigation } from 'swiper/modules';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Play } from 'lucide-react';
 import { useState } from 'react';
 const sweeps = [
     {
@@ -58,12 +58,27 @@ function CarouselSong() {
                                 className="h-40 flex bg-linear-65 from-purple-500 to-pink-500
                                           items-start justify-center shadow-2xs rounded-sm p-3 bg-opacity-90"
                                 onMouseEnter={() => setHoverSong(index)}
+                                onMouseLeave={() => setHoverSong(null)}
                             >
-                                <img
-                                    className="size-[132px] object-cover rounded-sm "
-                                    src={item.image}
-                                    alt={item.category}
-                                />
+                                <div className="relative overflow-hidden ">
+                                    <img
+                                        className={`size-[132px] object-cover rounded-sm ${
+                                            hoverSong === index &&
+                                            'scale-125 transition-all duration-300 ease-in-out'
+                                        }`}
+                                        src={item.image}
+                                        alt={item.category}
+                                    />
+
+                                    {hoverSong === index && (
+                                        <div
+                                            className="border rounded-full absolute top-1/2 -translate-y-1/2
+                                                    right-1/2 translate-x-1/2 p-3 border-white"
+                                        >
+                                            <Play color="white" fill="white" />
+                                        </div>
+                                    )}
+                                </div>
                                 <div className="ml-3 flex-col">
                                     <div
                                         className=" w-fit text-[10px] italic px-2.5 font-bold text-white 

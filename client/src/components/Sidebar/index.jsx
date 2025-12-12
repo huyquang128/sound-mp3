@@ -9,6 +9,10 @@ import {
     Star,
 } from 'lucide-react';
 import SeparateVertical from '../separate/separate-vertical';
+import { useSelector, useDispatch } from 'react-redux';
+import { setIsOpenModalAuth } from '../../redux/modal-slice';
+import ModalAuth from '../modal/modal-auth';
+import { AnimatePresence } from 'framer-motion';
 
 const menu1 = [
     {
@@ -50,8 +54,12 @@ const menu2 = [
         id: 3,
     },
 ];
+
 function Sidebar() {
-    
+    const { isModalAuth } = useSelector((state) => state.modal);
+    console.log('🚀 ~ Sidebar ~ isModalAuth:', isModalAuth);
+    const dispatch = useDispatch();
+
     return (
         <>
             <div className="fixed bg-sidebar-bg top-0 left-0 bottom-0 w-60">
@@ -127,12 +135,16 @@ function Sidebar() {
                             className="text-xs border border-white px-9 py-1.5 
                                 rounded-full font-semibold uppercase cursor-pointer 
                                 hover:opacity-70"
+                            onClick={() => dispatch(setIsOpenModalAuth())}
                         >
                             Đăng nhập
                         </button>
                     </div>
                 </div>
             </div>
+
+            {/* modal auth */}
+            <AnimatePresence>{isModalAuth && <ModalAuth />}</AnimatePresence>
         </>
     );
 }
