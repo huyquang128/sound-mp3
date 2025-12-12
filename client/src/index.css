@@ -6,4 +6,9 @@
 
 @theme {
     --font-inter: 'Inter', sans-serif;
+
+    --color-home-bg: #170f23;
+    --color-sidebar-bg: #231b2e;
 }
+
+/* act next - pev carousel custom */
