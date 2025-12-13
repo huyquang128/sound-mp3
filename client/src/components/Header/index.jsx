@@ -24,7 +24,7 @@ function Header() {
 
             {/* menu-right */}
             <div className="flex items-center">
-                <button className="mr-3 px-5 py-2.5 rounded-full bg-[#9b4de0] text-white text-[16px] font-bold cursor-pointer hover:opacity-90">
+                <button className="mr-3 px-5 py-2.5 rounded-full bg-btn-primary text-white text-[16px] font-bold cursor-pointer hover:opacity-90">
                     Nâng cấp tài khoản
                 </button>
                 <button className=" mr-3 flex justify-center items-center  rounded-full size-10 bg-[#2f2739] hover:opacity- cursor-pointer">
