@@ -1,9 +1,14 @@
 import {
     CircleGauge,
+    CloudUpload,
     Disc2,
+    FileHeadphone,
+    Heart,
     LayoutDashboard,
     ListMusic,
+    ListMusicIcon,
     Music4,
+    RotateCcw,
     Speaker,
     SquareActivity,
     Star,
@@ -13,6 +18,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setIsOpenModalAuth } from '../../redux/modal-slice';
 import ModalAuth from '../modal/modal-auth';
 import { AnimatePresence } from 'framer-motion';
+import { useAuth } from '@clerk/clerk-react';
+import { Link } from 'react-router-dom';
 
 const menu1 = [
     {
@@ -41,24 +48,51 @@ const menu2 = [
     {
         name: 'BXH Nhạc mới',
         icon: ListMusic,
-        id: 1,
     },
     {
         name: 'Chủ đè & Thể loại',
         icon: LayoutDashboard,
-        id: 2,
     },
     {
         name: 'Top 100',
         icon: Star,
-        id: 3,
+    },
+];
+
+const menuLoginSuccess = [
+    {
+        name: 'Nghe gần đây',
+        icon: RotateCcw,
+        color: '#412471',
+    },
+    {
+        name: 'Bài hát yêu thích',
+        icon: Heart,
+        color: '#1cc2f7',
+    },
+    {
+        name: 'Playlist',
+        icon: ListMusicIcon,
+        color: '#fa7230',
+    },
+    {
+        name: 'Album',
+        icon: FileHeadphone,
+        color: '#ff44ab',
+    },
+    {
+        name: 'Đã tải lên',
+        icon: CloudUpload,
+        color: '#ff5050',
     },
 ];
 
 function Sidebar() {
-    const { isModalAuth } = useSelector((state) => state.modal);
-    console.log('🚀 ~ Sidebar ~ isModalAuth:', isModalAuth);
     const dispatch = useDispatch();
+
+    const { isModalAuth } = useSelector((state) => state.modal);
+
+    const { isSignedIn } = useAuth();
 
     return (
         <>
@@ -123,23 +157,56 @@ function Sidebar() {
                             );
                         })}
                     </ul>
-                    <div
-                        className="px-2 py-4 my-2.5 mx-5 text-white text-center 
-                            rounded-lg bg-[#9b4de0]"
-                    >
-                        <div className="text-xs font-semibold mb-2.5">
-                            Đăng nhập để khám phá những bản nhạc đanh cho riêng
-                            bạn
+
+                    {isSignedIn ? (
+                        <div>
+                            {/* menu after login successfully */}
+                            {menuLoginSuccess.map((item, index) => {
+                                const Icon = item.icon;
+                                return (
+                                    <li
+                                        className="text-bold text-[#dadada] "
+                                        key={index}
+                                    >
+                                        <Link
+                                            className="flex items-center text-sm font-medium py-3 px-5 gap-4
+                                              "
+                                            href=""
+                                        >
+                                            <div
+                                                className={`p-1 rounded-md flex justify-center items-center`}
+                                                style={{
+                                                    background: `${item.color}`,
+                                                }}
+                                            >
+                                                <Icon size={16} />
+                                            </div>
+
+                                            <div>{item.name}</div>
+                                        </Link>
+                                    </li>
+                                );
+                            })}
                         </div>
-                        <button
-                            className="text-xs border border-white px-9 py-1.5 
+                    ) : (
+                        <div
+                            className="px-2 py-4 my-2.5 mx-5 text-white text-center 
+                            rounded-lg bg-[#9b4de0]"
+                        >
+                            <div className="text-xs font-semibold mb-2.5">
+                                Đăng nhập để khám phá những bản nhạc đanh cho
+                                riêng bạn
+                            </div>
+                            <button
+                                className="text-xs border border-white px-9 py-1.5 
                                 rounded-full font-semibold uppercase cursor-pointer 
                                 hover:opacity-70"
-                            onClick={() => dispatch(setIsOpenModalAuth())}
-                        >
-                            Đăng nhập
-                        </button>
-                    </div>
+                                onClick={() => dispatch(setIsOpenModalAuth())}
+                            >
+                                Đăng nhập
+                            </button>
+                        </div>
+                    )}
                 </div>
             </div>
 

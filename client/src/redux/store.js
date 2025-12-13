@@ -22,7 +22,7 @@ const authPersistConfig = {
 const modalPersistConfig = {
     key: 'modal',
     storage: storage,
-    blacklist: ['isModalAuth'],
+    blacklist: ['isModalAuth', 'isModalHeaderSetting', 'isModalHeaderSearch'],
 };
 
 const rootReducer = combineReducers({
