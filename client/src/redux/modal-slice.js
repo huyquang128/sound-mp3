@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
     isModalAuth: false,
+    isModalUser: false,
     isModalHeaderSetting: false,
     isModalHeaderSearch: false,
 };
@@ -17,8 +18,11 @@ const modalSlice = createSlice({
             state.isModalAuth = false;
         },
 
-        toggleModalHeaderSetting: (state, action) => {
+        toggleModalHeaderSetting: (state) => {
             state.isModalHeaderSetting = !state.isModalHeaderSetting;
+        },
+        toggleModalUser: (state) => {
+            state.isModalUser = !state.isModalUser;
         },
 
         setIsOpenModalHeaderSearch: (state) => {
@@ -36,6 +40,7 @@ export const {
     toggleModalHeaderSetting,
     setIsOpenModalHeaderSearch,
     setIsCloseModalHeaderSearch,
+    toggleModalUser,
 } = modalSlice.actions;
 
 export default modalSlice.reducer;

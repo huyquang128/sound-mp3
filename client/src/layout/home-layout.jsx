@@ -1,6 +1,5 @@
+import { Outlet } from 'react-router-dom';
 import Header from '../components/Header';
-import Main from '../components/Main';
-import CarouselSong from '../components/Main/Carousel-Song';
 import Sidebar from '../components/Sidebar';
 
 function HomeLayout() {
@@ -8,7 +7,7 @@ function HomeLayout() {
         <div className="">
             <Sidebar />
             <Header />
-            <Main />
+            <Outlet />
         </div>
     );
 }

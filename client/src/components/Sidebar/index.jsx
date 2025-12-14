@@ -26,10 +26,12 @@ const menu1 = [
         name: 'Thư viên',
         icon: Music4,
         id: 1,
+        link: '/library',
     },
     {
         name: 'Khám phá',
         icon: Disc2,
+        link: '/discover',
         id: 2,
     },
     {
@@ -114,17 +116,17 @@ function Sidebar() {
                                         className="text-bold text-[#dadada] "
                                         key={item.id}
                                     >
-                                        <a
+                                        <Link
                                             className="flex items-center text-sm font-medium py-3 px-5 gap-4
                                               "
-                                            href=""
+                                            to={`${item.link}`}
                                         >
                                             <Icon size={22} />
 
                                             <div className="font-medium">
                                                 {item.name}
                                             </div>
-                                        </a>
+                                        </Link>
                                     </li>
                                 );
                             })}

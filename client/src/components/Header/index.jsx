@@ -6,17 +6,18 @@ import {
     setIsCloseModalHeaderSearch,
     setIsOpenModalHeaderSearch,
     toggleModalHeaderSetting,
+    toggleModalUser,
 } from '../../redux/modal-slice';
 import ModalHeaderSearch from '../modal/modal-header-search';
+import ModalUser from '../modal/modal-user';
 function Header() {
     const dispatch = useDispatch();
-    const { isModalHeaderSetting, isModalHeaderSearch } = useSelector(
-        (state) => state.modal
-    );
+    const { isModalHeaderSetting, isModalHeaderSearch, isModalUser } =
+        useSelector((state) => state.modal);
     return (
         <header
             className=" fixed flex justify-between px-14 bg-home-bg top-0 right-0 left-60 py-5
-                          text-white z-20"
+                          text-white z-30"
         >
             {/* menu-left */}
             <div className="flex items-center">
@@ -74,8 +75,19 @@ function Header() {
                         {isModalHeaderSetting && <ModalHeaderSetting />}
                     </AnimatePresence>
                 </button>
-                <div className=" flex justify-center items-center border rounded-full size-8 bg-[#f4dfe4] hover:opacity-80 cursor-pointer">
-                    <User className="text-[#9f2156]" />
+
+                <div className="relative">
+                    <div
+                        onClick={() => dispatch(toggleModalUser())}
+                        className=" flex justify-center items-center border rounded-full 
+                                size-8 bg-[#f4dfe4] hover:opacity-80 cursor-pointer
+                                "
+                    >
+                        <User className="text-[#9f2156]" />
+                    </div>
+                    <AnimatePresence>
+                        {isModalUser && <ModalUser />}
+                    </AnimatePresence>
                 </div>
             </div>
         </header>
