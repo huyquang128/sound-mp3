@@ -31,7 +31,7 @@ const menu1 = [
     {
         name: 'Khám phá',
         icon: Disc2,
-        link: '/discover',
+        link: '/',
         id: 2,
     },
     {
@@ -101,9 +101,11 @@ function Sidebar() {
             <div className="fixed bg-sidebar-bg top-0 left-0 bottom-0 w-60">
                 <div className="sticky">
                     <div className="pl-6 py-3">
-                        <div className="mt-3.5 text-2xl font-bold text-white">
-                            SOUND MP3
-                        </div>
+                        <Link to="/">
+                            <div className="mt-3.5 text-2xl font-bold text-white">
+                                SOUND MP3
+                            </div>
+                        </Link>
                     </div>
 
                     {/*  */}

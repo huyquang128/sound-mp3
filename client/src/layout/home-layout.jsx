@@ -1,6 +1,7 @@
 import { Outlet } from 'react-router-dom';
 import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
+import UiPlaySong from '../components/Ui-Play-Song';
 
 function HomeLayout() {
     return (
@@ -8,6 +9,7 @@ function HomeLayout() {
             <Sidebar />
             <Header />
             <Outlet />
+            <UiPlaySong />
         </div>
     );
 }

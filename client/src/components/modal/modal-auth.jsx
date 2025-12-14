@@ -11,7 +11,7 @@ function ModalAuth() {
 
     return (
         <motion.div
-            className="fixed inset-0 flex justify-center items-center bg-black/80 z-30"
+            className="fixed inset-0 flex justify-center items-center bg-black/80 z-[999]"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}

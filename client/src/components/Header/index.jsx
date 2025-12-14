@@ -4,20 +4,37 @@ import { useDispatch, useSelector } from 'react-redux';
 import ModalHeaderSetting from '../modal/modal-header-setting';
 import {
     setIsCloseModalHeaderSearch,
+    setIsCloseModalHeaderSetting,
+    setIsCloseModalUser,
     setIsOpenModalHeaderSearch,
     toggleModalHeaderSetting,
     toggleModalUser,
 } from '../../redux/modal-slice';
 import ModalHeaderSearch from '../modal/modal-header-search';
 import ModalUser from '../modal/modal-user';
+import useClickOutSide from '../../hooks/useClickOutSide';
 function Header() {
     const dispatch = useDispatch();
+
     const { isModalHeaderSetting, isModalHeaderSearch, isModalUser } =
         useSelector((state) => state.modal);
+
+    const { ref } = useClickOutSide(() =>
+        dispatch(setIsCloseModalHeaderSetting())
+    );
+
+    const { ref: ref_input } = useClickOutSide(() =>
+        dispatch(setIsCloseModalHeaderSearch())
+    );
+
+    const { ref: ref_profile } = useClickOutSide(() =>
+        dispatch(setIsCloseModalUser())
+    );
+
     return (
         <header
-            className=" fixed flex justify-between px-14 bg-home-bg top-0 right-0 left-60 py-5
-                          text-white z-30"
+            className="fixed flex justify-between px-14 bg-home-bg top-0 right-0 left-60 py-5
+                     text-white z-30"
         >
             {/* menu-left */}
             <div className="flex items-center">
@@ -28,6 +45,7 @@ function Header() {
                     <MoveRight />
                 </div>
                 <div
+                    ref={ref_input}
                     onFocus={() => dispatch(setIsOpenModalHeaderSearch())}
                     className="mx-10 flex justify-center items-center p-2 
                           bg-sidebar-bg rounded-full relative"
@@ -60,6 +78,7 @@ function Header() {
                     Nâng cấp tài khoản
                 </button>
                 <button
+                    ref={ref}
                     onClick={() => dispatch(toggleModalHeaderSetting())}
                     className=" mr-3 flex justify-center items-center  
                           rounded-full size-10 bg-[#2f2739] hover:opacity- 
@@ -78,6 +97,7 @@ function Header() {
 
                 <div className="relative">
                     <div
+                        ref={ref_profile}
                         onClick={() => dispatch(toggleModalUser())}
                         className=" flex justify-center items-center border rounded-full 
                                 size-8 bg-[#f4dfe4] hover:opacity-80 cursor-pointer

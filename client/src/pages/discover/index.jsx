@@ -7,7 +7,7 @@ import UiPlaySong from '../../components/Ui-Play-Song/index';
 
 function DiscoverPage() {
     return (
-        <div className="mt-[47px] ml-60 bg-home-bg h-auto px-14 pt-10">
+        <div className="mt-[47px] ml-60 bg-home-bg h-auto px-14 pt-10 pb-40">
             <CarouselSong />
             <SliderIntro />
             <SongSuggest />
@@ -15,7 +15,6 @@ function DiscoverPage() {
             <ListOneHundred />
             <ListOneHundred />
             <NewSong />
-            <UiPlaySong />
         </div>
     );
 }
